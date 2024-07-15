@@ -46,9 +46,9 @@ class EmailFilterCrew():
 	def _format_emails(self, emails):
 		emails_string = []
 		for email in emails:
-			print(email)
+			# print(email)
 			arr = [
-				f"ID: {email['id']}",
+				# f"ID: {email['id']}",
 				f"- Thread ID: {email['threadId']}",
 				f"- Snippet: {email['snippet']}",
 				f"- From: {email['sender']}",
