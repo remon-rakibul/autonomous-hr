@@ -21,13 +21,12 @@ class EmailFilterCrew():
 				tasks.action_required_emails_task(self.action_agent),
 				tasks.draft_responses_task(self.writer_agent)
 			],
-			# full_output=True,
+			full_output=True,
 			verbose=True,
-			# output_token_usage=True,
-
+			output_log_file=True,
 		)
 		# with get_openai_callback() as cb:
-
+		
 		result = crew.kickoff()
 			# # print(cb)
 			
@@ -38,9 +37,8 @@ class EmailFilterCrew():
 			# print(f"Successful Requests: {cb.successful_requests}")
 			# print("\n\n")
 
-
-		# print("crew usages metrics: ")
-		# print(crew.usage_metrics)
+		print("crew usages metrics: ")
+		print(crew.usage_metrics)
 		return {**state, "action_required_emails": result}
 
 	def _format_emails(self, emails):

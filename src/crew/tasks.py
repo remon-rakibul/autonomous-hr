@@ -33,8 +33,6 @@ class EmailFilterTasks:
 
 				Identify the main query or concerns that needs to be
 				addressed in the response for each
-					  
-				When you are using the GmailGetThread tool, the input format should be {"thread_id": "Thread ID"}
 				"""),
 			expected_output=dedent("""\
 				- thread_id: [Thread ID]
@@ -66,7 +64,6 @@ class EmailFilterTasks:
 				- subject
 				- message
 
-				When you are using the GmailGetThread tool, the input format should be {"thread_id": "Thread ID"}
 				You MUST create all drafts before sending your final answer.
 				"""),
 			expected_output=dedent("""\

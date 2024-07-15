@@ -1,5 +1,6 @@
 from langchain_community.agent_toolkits import GmailToolkit
 from langchain_community.tools.gmail.create_draft import GmailCreateDraft
+from langchain_community.tools.gmail.get_thread import GmailGetThread
 from langchain.tools import tool
 
 class CreateDraftTool():
@@ -24,3 +25,14 @@ class CreateDraftTool():
 
 
 
+class CreateGmailThreadTool():
+  @tool("Get Gmail Thread")
+  def get_gmail_thread(thread_id: str) -> str:
+      """
+      Useful to get a gmail thread.
+      The input to the tool should be the thread id of an email in string format.
+      """
+      gmail = GmailToolkit()
+      tool = GmailGetThread(api_resource=gmail.api_resource)
+      result = tool.run({"thread_id": thread_id})
+      return result

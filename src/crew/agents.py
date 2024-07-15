@@ -4,7 +4,7 @@ from langchain_community.tools.tavily_search import TavilySearchResults
 
 from textwrap import dedent
 from crewai import Agent
-from .tools import CreateDraftTool
+from .tools import CreateDraftTool, CreateGmailThreadTool
 from langchain_groq import ChatGroq
 
 llm = ChatGroq(
@@ -41,8 +41,9 @@ class EmailFilterAgents():
 				in identifying emails that require immediate action. Your skill set includes interpreting
 				the urgency and importance of an email based on its content and context."""),
 			tools=[
-				GmailGetThread(api_resource=self.gmail.api_resource),
-				TavilySearchResults()
+				# GmailGetThread(api_resource=self.gmail.api_resource),
+				CreateGmailThreadTool.get_gmail_thread,
+				TavilySearchResults(),
 			],
 			verbose=True,
 			allow_delegation=False,
@@ -59,7 +60,8 @@ class EmailFilterAgents():
 				tailored to address the specific needs and context of the email."""),
 			tools=[
 				TavilySearchResults(),
-				GmailGetThread(api_resource=self.gmail.api_resource),
+				# GmailGetThread(api_resource=self.gmail.api_resource),
+				CreateGmailThreadTool.get_gmail_thread,
 				CreateDraftTool.create_draft
 			],
 			verbose=True,
