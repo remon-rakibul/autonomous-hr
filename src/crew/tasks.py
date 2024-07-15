@@ -6,19 +6,21 @@ class EmailFilterTasks:
 		return Task(
 			description=dedent(f"""\
 				Analyze a batch of emails and filter out
-				non-essential ones such as newsletters, promotional content and notifications.
+				non-essential ones such as newsletters, promotional content, and notifications.
 
-			  Use your expertise in email content analysis to distinguish
-				important emails from the rest, pay attention to the sender and avoind invalid emails.
+				Use your expertise in email content analysis to distinguish
+				important emails from the rest, paying attention to the sender and avoiding invalid emails.
 
 				Make sure to filter for the messages actually directed at the user and avoid notifications.
 
 				EMAILS
 				-------
 				{emails}
-
-				Your final answer MUST be a the relevant thread_ids and the sender, use bullet points.
 				"""),
+			expected_output=dedent("""\
+				- thread_id: [Thread ID]
+				- sender: [Sender's Email]
+			"""),
 			agent=agent
 		)
 
@@ -31,21 +33,22 @@ class EmailFilterTasks:
 
 				Identify the main query or concerns that needs to be
 				addressed in the response for each
-
-				Your final answer MUST be a list for all emails with:
-				- the thread_id
-				- a summary of the email thread
-				- a highlighting with the main points
-				- identify the user and who he will be answering to
-				- communication style in the thread
-				- the sender's email address
 				"""),
+			expected_output=dedent("""\
+				- thread_id: [Thread ID]
+				- summary: [Summary of Email Thread]
+				- main_points: [Main Points]
+				- user: [User]
+				- responding_to: [Responding To]
+				- communication_style: [Communication Style]
+				- sender: [Sender's Email]
+        		"""),
 			agent=agent
 		)
 
 	def draft_responses_task(self, agent):
 		return Task(
-			description=dedent(f"""\
+			description=dedent("""\
 				Based on the action-required emails identified, draft responses for each.
 				Ensure that each response is tailored to address the specific needs
 				and context outlined in the email.
@@ -62,7 +65,9 @@ class EmailFilterTasks:
 				- message
 
 				You MUST create all drafts before sending your final answer.
-				Your final answer MUST be a confirmation that all responses have been drafted.
 				"""),
+			expected_output=dedent("""\
+				- confirmation: [Confirmation that all responses have been drafted]
+			"""),
 			agent=agent
 		)
