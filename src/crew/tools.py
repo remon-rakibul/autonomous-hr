@@ -1,6 +1,7 @@
-from langchain_community.agent_toolkits import GmailToolkit
 from langchain_community.tools.gmail.create_draft import GmailCreateDraft
+from langchain_community.tools.tavily_search import TavilySearchResults
 from langchain_community.tools.gmail.get_thread import GmailGetThread
+from langchain_community.agent_toolkits import GmailToolkit
 from langchain.tools import tool
 
 class CreateDraftTool():
@@ -35,4 +36,16 @@ class CreateGmailThreadTool():
       gmail = GmailToolkit()
       tool = GmailGetThread(api_resource=gmail.api_resource)
       result = tool.run({"thread_id": thread_id})
+      return result
+  
+
+class CreateTavilySearchTool():
+    @tool("Search Web")
+    def search_web(query):
+      """
+      Useful to search the web and get results.
+      The input should be a query in string format to search the web.
+      """
+      tool = TavilySearchResults()
+      result = tool.run({"query": query})
       return result

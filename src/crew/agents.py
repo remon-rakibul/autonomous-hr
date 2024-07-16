@@ -1,10 +1,10 @@
-from langchain_community.agent_toolkits import GmailToolkit
-from langchain_community.tools.gmail.get_thread import GmailGetThread
-from langchain_community.tools.tavily_search import TavilySearchResults
+# from langchain_community.agent_toolkits import GmailToolkit
+# from langchain_community.tools.gmail.get_thread import GmailGetThread
+# from langchain_community.tools.tavily_search import TavilySearchResults
 
 from textwrap import dedent
 from crewai import Agent
-from .tools import CreateDraftTool, CreateGmailThreadTool
+from .tools import CreateDraftTool, CreateGmailThreadTool, CreateTavilySearchTool
 from langchain_groq import ChatGroq
 
 llm = ChatGroq(
@@ -14,8 +14,8 @@ llm = ChatGroq(
 )
 
 class EmailFilterAgents():
-	def __init__(self):
-		self.gmail = GmailToolkit()
+	# def __init__(self):
+	# 	self.gmail = GmailToolkit()
 
 	def email_filter_agent(self):
 		return Agent(
@@ -43,7 +43,8 @@ class EmailFilterAgents():
 			tools=[
 				# GmailGetThread(api_resource=self.gmail.api_resource),
 				CreateGmailThreadTool.get_gmail_thread,
-				TavilySearchResults(),
+				# TavilySearchResults(),
+				CreateTavilySearchTool.search_web
 			],
 			verbose=True,
 			allow_delegation=False,
@@ -59,10 +60,11 @@ class EmailFilterAgents():
 				Your strength lies in your ability to communicate effectively, ensuring that each response is
 				tailored to address the specific needs and context of the email."""),
 			tools=[
-				TavilySearchResults(),
+				# TavilySearchResults(),
 				# GmailGetThread(api_resource=self.gmail.api_resource),
 				CreateGmailThreadTool.get_gmail_thread,
-				CreateDraftTool.create_draft
+				CreateDraftTool.create_draft,
+				CreateTavilySearchTool.search_web
 			],
 			verbose=True,
 			allow_delegation=False,
