@@ -1,0 +1,10 @@
+crew usages metrics: 
+{'total_tokens': 42821, 'prompt_tokens': 41484, 'completion_tokens': 1337, 'successful_requests': 23}
+cost: 
+{'total_cost': 0.22747499999999998, 'input_cost': 0.20742, 'output_cost': 0.020055}
+
+crew usages metrics: 
+{'total_tokens': 24410, 'prompt_tokens': 23527, 'completion_tokens': 883, 'successful_requests': 17}
+cost: 
+{'total_cost': 0.13088, 'input_cost': 0.11763499999999999, 'output_cost': 0.013245}
+

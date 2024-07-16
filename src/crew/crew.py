@@ -3,6 +3,7 @@ from langchain_community.callbacks import get_openai_callback
 
 from .agents import EmailFilterAgents
 from .tasks import EmailFilterTasks
+from .util import calculate_costs
 
 class EmailFilterCrew():
 	def __init__(self):
@@ -39,6 +40,9 @@ class EmailFilterCrew():
 
 		print("crew usages metrics: ")
 		print(crew.usage_metrics)
+		cost = calculate_costs(crew.usage_metrics,5,15,1000000)
+		print("cost: ")
+		print(cost)
 		return {**state, "action_required_emails": result}
 
 	def _format_emails(self, emails):
