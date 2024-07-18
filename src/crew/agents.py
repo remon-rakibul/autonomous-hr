@@ -4,7 +4,7 @@
 
 from textwrap import dedent
 from crewai import Agent
-from .tools import CreateDraftTool, CreateGmailThreadTool, CreateTavilySearchTool
+from .tools import CreateDraftTool, CreateGmailThreadTool, CreateTavilySearchTool, CreateGmailMessageTool
 from langchain_groq import ChatGroq
 
 llm = ChatGroq(
@@ -42,7 +42,8 @@ class EmailFilterAgents():
 				the urgency and importance of an email based on its content and context."""),
 			tools=[
 				# GmailGetThread(api_resource=self.gmail.api_resource),
-				CreateGmailThreadTool.get_gmail_thread,
+				# CreateGmailThreadTool.get_gmail_thread,
+				CreateGmailMessageTool.get_gmail_message,
 				# TavilySearchResults(),
 				CreateTavilySearchTool.search_web
 			],
@@ -62,7 +63,8 @@ class EmailFilterAgents():
 			tools=[
 				# TavilySearchResults(),
 				# GmailGetThread(api_resource=self.gmail.api_resource),
-				CreateGmailThreadTool.get_gmail_thread,
+				# CreateGmailThreadTool.get_gmail_thread,
+				CreateGmailMessageTool.get_gmail_message,
 				CreateDraftTool.create_draft,
 				CreateTavilySearchTool.search_web
 			],

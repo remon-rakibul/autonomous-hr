@@ -8,3 +8,27 @@ crew usages metrics:
 cost: 
 {'total_cost': 0.13088, 'input_cost': 0.11763499999999999, 'output_cost': 0.013245}
 
+crew usages metrics: 
+{'total_tokens': 25421, 'prompt_tokens': 24533, 'completion_tokens': 888, 'successful_requests': 15}
+cost: 
+{'total_cost': 0.135985, 'input_cost': 0.122665, 'output_cost': 0.01332}
+
+crew usages metrics: 
+{'total_tokens': 43247, 'prompt_tokens': 42095, 'completion_tokens': 1152, 'successful_requests': 19}
+cost: 
+{'total_cost': 0.22775499999999999, 'input_cost': 0.210475, 'output_cost': 0.01728}
+
+crew usages metrics: 
+{'total_tokens': 42722, 'prompt_tokens': 41663, 'completion_tokens': 1059, 'successful_requests': 19}
+cost: 
+{'total_cost': 0.2242, 'input_cost': 0.208315, 'output_cost': 0.015885}
+
+crew usages metrics: 
+{'total_tokens': 42827, 'prompt_tokens': 41720, 'completion_tokens': 1107, 'successful_requests': 19}
+cost: 
+{'total_cost': 0.22520500000000002, 'input_cost': 0.2086, 'output_cost': 0.016604999999999998}
+
+crew usages metrics: 
+{'total_tokens': 40762, 'prompt_tokens': 39210, 'completion_tokens': 1552, 'successful_requests': 19}
+cost: 
+{'total_cost': 0.21933, 'input_cost': 0.19605, 'output_cost': 0.02328}

@@ -53,6 +53,7 @@ class EmailFilterCrew():
 				# f"ID: {email['id']}",
 				f"- Thread ID: {email['threadId']}",
 				f"- Snippet: {email['snippet']}",
+				# f"- Body: {email['body']}",
 				f"- From: {email['sender']}",
 				f"--------"
 			]

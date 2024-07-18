@@ -12,7 +12,10 @@ class Nodes():
 		print("# Checking for new emails")
 		search = GmailSearch(api_resource=self.gmail.api_resource)
 		emails = search('newer_than:5d')
+		# print(emails)
 		checked_emails = state['checked_emails_ids'] if state['checked_emails_ids'] else []
+		# print(checked_emails)
+		# print(state)
 		thread = []
 		new_emails = []
 		for email in emails:
@@ -23,6 +26,7 @@ class Nodes():
 						"id": email['id'],
 						"threadId": email['threadId'],
 						"snippet": email['snippet'],
+						# "body": email['body'],
 						"sender": email["sender"]
 					}
 				)
