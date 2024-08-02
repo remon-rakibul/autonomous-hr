@@ -5,20 +5,41 @@ from langchain_community.tools.gmail.get_message import GmailGetMessage
 from langchain_community.agent_toolkits import GmailToolkit
 from langchain.tools import tool
 
+# class CreateDraftTool():
+#   @tool("Create Draft")
+#   def create_draft(data):
+#     """
+#     	Useful to create an email draft.
+#       The input to this tool should be a pipe (|) separated text
+#       of length 3 (three), representing who to send the email to,
+#       the subject of the email and the actual message.
+#       For example, `lorem@ipsum.com|Nice To Meet You|Hey it was great to meet you.`.
+#     """
+#     email, subject, message = data.split('|')
+#     gmail = GmailToolkit()
+#     draft = GmailCreateDraft(api_resource=gmail.api_resource)
+#     result = draft.run({
+# 				'to': [email],
+# 				'subject': subject,
+# 				'message': message
+# 		})
+#     return f"\nDraft created: {result}\n"
+
+
 class CreateDraftTool():
   @tool("Create Draft")
   def create_draft(data):
     """
-    	Useful to create an email draft.
-      The input to this tool should be a pipe (|) separated text
-      of length 3 (three), representing who to send the email to,
-      the subject of the email and the actual message.
-      For example, `lorem@ipsum.com|Nice To Meet You|Hey it was great to meet you.`.
+ 		Useful to create an email draft.
+    The input to this tool should be a pipe (|) separated text
+    of length 3 (three), representing who to send the email to,
+    the subject of the email and the actual message.
+    For example, `lorem@ipsum.com|Nice To Meet You|Hey it was great to meet you.`.
     """
     email, subject, message = data.split('|')
     gmail = GmailToolkit()
     draft = GmailCreateDraft(api_resource=gmail.api_resource)
-    result = draft({
+    result = draft.run({
 				'to': [email],
 				'subject': subject,
 				'message': message
@@ -54,12 +75,25 @@ class CreateTavilySearchTool():
 
 class CreateGmailMessageTool():
    @tool("Get Gmail Message")
-   def get_gmail_message(message_id: str):
+   def get_gmail_message(message_id):
       """
       Useful to get a gmail message.
-      The input to the tool should be the thread id of an email in string format.
+      The input to the tool should be the message id of an email.
       """
+      # print("message id from llm")
+      # print(message_id)
+      # print(type(message_id))
+      # print(str(message_id))
+      if message_id[0] == "'" or message_id[0] == '"':
+         message_id = message_id[1:]
+         message_id = str(message_id)
+      # print(message_id)
       gmail = GmailToolkit()
       tool = GmailGetMessage(api_resource=gmail.api_resource)
       result = tool.run({"message_id": message_id})
-      return result
+      return {
+         'message_id': result['id'],
+         'subject': result['subject'],
+         'body': result['body'],
+         'sender': result['sender']
+         }

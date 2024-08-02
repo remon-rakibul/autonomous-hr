@@ -51,7 +51,7 @@ class EmailFilterCrew():
 			# print(email)
 			arr = [
 				# f"ID: {email['id']}",
-				f"- Thread ID: {email['threadId']}",
+				f"- Message ID: {email['id']}",
 				f"- Snippet: {email['snippet']}",
 				# f"- Body: {email['body']}",
 				f"- From: {email['sender']}",

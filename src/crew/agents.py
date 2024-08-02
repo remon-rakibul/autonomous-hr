@@ -1,15 +1,24 @@
-# from langchain_community.agent_toolkits import GmailToolkit
+from langchain_community.agent_toolkits import GmailToolkit
 # from langchain_community.tools.gmail.get_thread import GmailGetThread
 # from langchain_community.tools.tavily_search import TavilySearchResults
+# from langchain_community.tools.gmail.get_message import GmailGetMessage
+from langchain_community.tools.gmail.create_draft import GmailCreateDraft
+
 
 from textwrap import dedent
 from crewai import Agent
 from .tools import CreateDraftTool, CreateGmailThreadTool, CreateTavilySearchTool, CreateGmailMessageTool
 from langchain_groq import ChatGroq
+from langchain_community.llms.ollama import Ollama
+
+# To Load Local models through Ollama
+# llm = Ollama(model="llama3.1")
+
 
 llm = ChatGroq(
     temperature=0,
-    model="llama3-70b-8192",
+    # model="llama3-70b-8192",
+	model="Llama-3.1-8b-Instant",
     api_key="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"
 )
 
@@ -44,6 +53,7 @@ class EmailFilterAgents():
 				# GmailGetThread(api_resource=self.gmail.api_resource),
 				# CreateGmailThreadTool.get_gmail_thread,
 				CreateGmailMessageTool.get_gmail_message,
+				# GmailGetMessage(api_resource=self.gmail.api_resource),
 				# TavilySearchResults(),
 				CreateTavilySearchTool.search_web
 			],
@@ -64,9 +74,11 @@ class EmailFilterAgents():
 				# TavilySearchResults(),
 				# GmailGetThread(api_resource=self.gmail.api_resource),
 				# CreateGmailThreadTool.get_gmail_thread,
+				# GmailGetMessage(api_resource=self.gmail.api_resource),
 				CreateGmailMessageTool.get_gmail_message,
 				CreateDraftTool.create_draft,
-				CreateTavilySearchTool.search_web
+				CreateTavilySearchTool.search_web,
+				# GmailCreateDraft(api_resource=self.gmail.api_resource)
 			],
 			verbose=True,
 			allow_delegation=False,

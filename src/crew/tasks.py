@@ -18,7 +18,7 @@ class EmailFilterTasks:
 				{emails}
 				"""),
 			expected_output=dedent("""\
-				- thread_id: [Thread ID]
+				- message_id: [ID]
 				- sender: [Sender's Email]
 			"""),
 			agent=agent
@@ -27,7 +27,7 @@ class EmailFilterTasks:
 	def action_required_emails_task(self, agent):
 		return Task(
 			description=dedent("""\
-				For each email thread, pull and analyze the complete threads using only the actual Thread ID.
+				For each email message, pull and analyze the complete messages using only the actual ID.
 				understand the context, key points, and the overall sentiment
 				of the conversation.
 
@@ -35,11 +35,10 @@ class EmailFilterTasks:
 				addressed in the response for each
 				"""),
 			expected_output=dedent("""\
-				- thread_id: [Thread ID]
-				- summary: [Summary of Email Thread]
+				- message_id: [ID]
+				- summary: [Summary of Email message]
 				- main_points: [Main Points]
 				- user: [User]
-				- responding_to: [Responding To]
 				- communication_style: [Communication Style]
 				- sender: [Sender's Email]
         		"""),
@@ -53,16 +52,14 @@ class EmailFilterTasks:
 				Ensure that each response is tailored to address the specific needs
 				and context outlined in the email.
 
-				- Assume the persona of the user and mimic the communication style in the thread.
+				- Assume the persona of the user and mimic the communication style in the message.
 				- Feel free to do research on the topic to provide a more detailed response, IF NECESSARY.
 				- IF a research is necessary do it BEFORE drafting the response.
-				- If you need to pull the thread again do it using only the actual Thread ID.
+				- If you need to pull the message again do it using only the message ID.
 
 				Use the tool provided to draft each of the responses.
-				When using the tool pass the following input:
-				- to (sender to be responded)
-				- subject
-				- message
+				When using the tool pass the following input in a string format:
+				Action Input: {"data": "to (the email address of the sender)|subject (subject of the email)|message (the reply you generate for the email)"}
 
 				You MUST create all drafts before sending your final answer.
 				"""),
