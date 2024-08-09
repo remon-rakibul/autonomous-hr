@@ -20,7 +20,7 @@ print(result)
 # print(result["subject"])
 # print(result["sender"])
 
-
+data = "hazrat.arisaftech@gmail.com|Discussion on LLM Project Development|Dear Hazrat Ali,\n\nThank you for sharing the update on our ongoing large language model (LLM) project. I appreciate your efforts to implement strategies for data augmentation.\n\nTo further enhance model performance, I recommend exploring additional techniques such as hyperparameter tuning and establishing comprehensive evaluation metrics. It would also be beneficial to discuss potential external collaborations or resources that could support our project.\n\nPlease let me know your availability for a meeting next week to discuss these matters in more detail.\n\nBest regards,\nMd Rakibul Haque"
 
 # class CreateDraftTool():
 #   @tool("Create Draft")

@@ -27,7 +27,7 @@ class EmailFilterTasks:
 	def action_required_emails_task(self, agent):
 		return Task(
 			description=dedent("""\
-				For each email message, pull and analyze the complete messages using only the actual ID.
+				For each email message, pull and analyze the complete messages using only the message ID.
 				understand the context, key points, and the overall sentiment
 				of the conversation.
 
@@ -58,9 +58,16 @@ class EmailFilterTasks:
 				- If you need to pull the message again do it using only the message ID.
 
 				Use the tool provided to draft each of the responses.
-				When using the tool pass the following input in a string format:
-				Action Input: {"data": "to (the email address of the sender)|subject (subject of the email)|message (the reply you generate for the email)"}
+				When using the tool pass the following input in string format:
+					  {"data": "to|subject|message"}
+				
+				Where
+					  to - the email address of the sender
+					  subject - subject of the email
+					  message - the reply you generate for the email
 
+				N.B: include proper line breaks so the input string does not cut off
+					  and make sure your input to the tool is a valid string
 				You MUST create all drafts before sending your final answer.
 				"""),
 			expected_output=dedent("""\

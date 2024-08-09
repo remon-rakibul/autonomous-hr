@@ -37,6 +37,15 @@ class CreateDraftTool():
     For example, `lorem@ipsum.com|Nice To Meet You|Hey it was great to meet you.`.
     """
     email, subject, message = data.split('|')
+    print(f'data: {data}')
+    # print(email)
+    # print(type(email))
+    # print(subject)
+    # print(message)
+    if email[0] == "'" or email[0] == '"':
+         email = email[1:]
+         email = str(email)
+    # print(email)
     gmail = GmailToolkit()
     draft = GmailCreateDraft(api_resource=gmail.api_resource)
     result = draft.run({
@@ -97,3 +106,5 @@ class CreateGmailMessageTool():
          'body': result['body'],
          'sender': result['sender']
          }
+   
+# CreateDraftTool.create_draft("hazrat.arisaftech@gmail.com|Discussion on LLM Project Development Response|Hi Hazrat, thank you for sharing the progress and next steps of our ongoing large language model (LLM) project. I have reviewed the points you highlighted and appreciate your input on data augmentation strategies, hyperparameter tuning, evaluation, and establishing comprehensive metrics for model performance. I agree that addressing challenges related to data diversity and model overfitting is crucial to the project's success. I am available to meet next week to discuss these matters in more detail. Please let me know a suitable time and date. Best regards, Md Rakibul Haque")

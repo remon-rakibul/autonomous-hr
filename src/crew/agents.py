@@ -12,15 +12,15 @@ from langchain_groq import ChatGroq
 from langchain_community.llms.ollama import Ollama
 
 # To Load Local models through Ollama
-# llm = Ollama(model="llama3.1")
+llm = Ollama(model="llama3.1")
 
 
-llm = ChatGroq(
-    temperature=0,
-    # model="llama3-70b-8192",
-	model="Llama-3.1-8b-Instant",
-    api_key="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"
-)
+# llm = ChatGroq(
+#     temperature=0,
+#     # model="llama3-70b-8192",
+# 	model="Llama-3.1-8b-Instant",
+#     api_key="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"
+# )
 
 class EmailFilterAgents():
 	# def __init__(self):
