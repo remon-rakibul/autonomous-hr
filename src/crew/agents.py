@@ -12,6 +12,7 @@ from langchain_groq import ChatGroq
 from langchain_community.llms.ollama import Ollama
 
 # To Load Local models through Ollama
+# llm = Ollama(model="llama3-groq-tool-use")
 llm = Ollama(model="llama3.1")
 
 
@@ -55,7 +56,7 @@ class EmailFilterAgents():
 				CreateGmailMessageTool.get_gmail_message,
 				# GmailGetMessage(api_resource=self.gmail.api_resource),
 				# TavilySearchResults(),
-				CreateTavilySearchTool.search_web
+				# CreateTavilySearchTool.search_web
 			],
 			verbose=True,
 			allow_delegation=False,
@@ -77,7 +78,7 @@ class EmailFilterAgents():
 				# GmailGetMessage(api_resource=self.gmail.api_resource),
 				CreateGmailMessageTool.get_gmail_message,
 				CreateDraftTool.create_draft,
-				CreateTavilySearchTool.search_web,
+				# CreateTavilySearchTool.search_web,
 				# GmailCreateDraft(api_resource=self.gmail.api_resource)
 			],
 			verbose=True,

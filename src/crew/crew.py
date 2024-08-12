@@ -40,7 +40,7 @@ class EmailFilterCrew():
 
 		print("crew usages metrics: ")
 		print(crew.usage_metrics)
-		cost = calculate_costs(crew.usage_metrics,5,15,1000000)
+		cost = calculate_costs(crew.usage_metrics,0.05,0.08,1000000)
 		print("cost: ")
 		print(cost)
 		return {**state, "action_required_emails": result}
