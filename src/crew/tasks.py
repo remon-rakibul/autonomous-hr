@@ -92,7 +92,7 @@ class EmailFilterTasks:
 			When using the tool pass the following input in JSON format:
 			
 					- email: the email address of the sender
-					- message: the reply you generate for the email
+					- message: the reply you generate for the email (format it as raw string)
 					- subject: subject of the email
 			
 			You MUST create all drafts before sending your final answer.

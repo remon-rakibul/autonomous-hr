@@ -35,10 +35,10 @@ class CreateDraftTool():
     # email, subject, message = data.split('|')
     # email, subject, message = data['email'],data['subject'],data['message']
     # print(f'data: {data}')
-    print('email: ',email.strip("\""))
+    # print('email: ',email.strip("\""))
     # print(type(email))
-    print('subject: ',subject.strip("\""))
-    print('message: ',message.strip("\""))
+    # print('subject: ',subject.strip("\""))
+    # print('message: ',message.strip("\""))
     # if email[0] == "'" or email[0] == '"':
     #      email = email[1:]
     #      email = str(email)
@@ -46,9 +46,9 @@ class CreateDraftTool():
     gmail = GmailToolkit()
     draft = GmailCreateDraft(api_resource=gmail.api_resource)
     result = draft.run({
-				'to': [email],
-				'subject': subject,
-				'message': message
+				'to': [email.strip("\"")],
+				'subject': subject.strip("\""),
+				'message': message.strip("\"")
 		})
     return f"\nDraft created: {result}\n"
 
@@ -90,13 +90,13 @@ class CreateGmailMessageTool():
       # print(message_id)
       # print(type(message_id))
       # print(str(message_id))
-      if message_id[0] == "'" or message_id[0] == '"':
-         message_id = message_id[1:]
-         message_id = str(message_id)
+      # if message_id[0] == "'" or message_id[0] == '"':
+      #    message_id = message_id[1:]
+      #    message_id = str(message_id)
       # print(message_id)
       gmail = GmailToolkit()
       tool = GmailGetMessage(api_resource=gmail.api_resource)
-      result = tool.run({"message_id": message_id})
+      result = tool.run({"message_id": message_id.strip("\"")})
       return {
          'message_id': result['id'],
          'subject': result['subject'],
